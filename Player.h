@@ -1,7 +1,3 @@
-//
-// Created by ayals on 5/14/2023.
-//
-
 #ifndef EX2_MATAM_PLAYER_H
 #define EX2_MATAM_PLAYER_H
 
@@ -24,7 +20,7 @@ class Player {
      *
      * @return void
      */
-    void printInfo() const;
+    static void printInfo() const;
 
     /*
      * Three constructors for a player:
@@ -35,9 +31,9 @@ class Player {
      * @result - The player's name, HP and coins are set to the given values.
      *      An instance of Mtmchkin
     */
-    Player(const char* name, int maxHP, int coins);
-    Player(const char* name, int maxHP);
-    Player(const char* name);
+    static Player(const char* name, int maxHP, int coins);
+    static Player(const char* name, int maxHP);
+    static Player(const char* name);
 
     /*
      * Copy constructor for a player:
@@ -45,7 +41,7 @@ class Player {
      * @param player - The player to copy.
      * @result - An instance of Player with the same values as the given player.
     */
-    Player(const Player& player);
+    static Player(const Player& player);
 
     /*
      * Destructor for a player:
@@ -56,7 +52,16 @@ class Player {
     */
     ~Player();
 
+    /*
+     * Assignment operator for a player:
+     *
+     * @param player - The player to assign.
+     * @result - The player is assigned.
+     *
+    */
     Player& operator=(const Player& player);
+
+
     /** Getters: **/
 
     /**
@@ -145,10 +150,10 @@ class Player {
     void damage(int hpToReduce);
 
     /**
-     * @param levelToAdd - The amount of levels to add to the player.
+     * @param none
      * @return void
      */
-    void levelUp(int levelToAdd);
+    void levelUp();
 
     /**
      * @param forceToAdd - The amount of force to add to the player.
@@ -158,11 +163,9 @@ class Player {
 
     /**
      * @param coinsToPay - The amount of coins to pay.
-     * @return void
+     * @return true if the player has enough coins to pay. false otherwise.
      */
-    void pay(int coinsToPay);
-
+    bool pay(int coinsToPay);
 };
-
 
 #endif //EX2_MATAM_PLAYER_H
