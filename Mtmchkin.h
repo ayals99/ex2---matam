@@ -1,14 +1,11 @@
-//
-// Created by Daniel_Meents on 07/04/2022.
-//
-
 #ifndef EX2_GAME_H
 #define EX2_GAME_H
 #include "Card.h"
 #include <iostream>
+#include <string>
 #include "Player.h"
 
-/*
+/**
  * GameStatus:
  * MidGame - The game is still active and the player continues to encounter cards.
  * Win - The player reached level 10.
@@ -19,7 +16,7 @@ enum class GameStatus{Win, Loss, MidGame};
 class Mtmchkin {
 public:
 
-    /*
+    /**
      * C'tor of the game:
      *
      * @param playerName - The name of the player.
@@ -31,7 +28,7 @@ public:
     Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
 
 
-    /*
+    /**
      * Play the next Card - according to the instruction in the exercise document
      *
      * @return
@@ -40,7 +37,7 @@ public:
     void playNextCard();
 
 
-    /*
+    /**
      *  Check if the game ended:
      *
      *  @return
@@ -50,7 +47,7 @@ public:
     bool isOver() const;
 
 
-    /*
+    /**
      *  Get the status of the game:
      *
      *  @return
@@ -60,7 +57,15 @@ public:
 
     //TODO: complete the Mtmchkin class.
     // This functions should start the game
-    Mtmchkin game(char name&, Card&, int power);
+
+    /**Initializes the game with the given parameters:
+     * @param name - the name of the player
+     * @param cardArray - the array of cards
+     * @param power - the power of the player
+     * @return
+     *      A new instance of Mtmchkin
+     */
+    Mtmchkin game(std::string name, Card& cardArray, int power);
 
 private:
     //TODO: complete the Mtmchkin class.

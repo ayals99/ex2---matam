@@ -1,6 +1,6 @@
 #include "Mtmchkin.h"
 
-/*
+/**
      * C'tor of the game:
      *
      * @param playerName - The name of the player.
@@ -11,11 +11,21 @@
 */
 Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards){
 
+}
+
+/**Initializes the game with the given parameters:
+     * @param name - the name of the player
+     * @param cardArray - the array of cards
+     * @param power - the power of the player
+     * @return
+     *      A new instance of Mtmchkin
+     */
+Mtmchkin game(std::string name, Card& cardArray, int power){
 
 }
 
 
-/*
+/**
      * Play the next Card - according to the instruction in the exercise document
      *
      * @return
@@ -23,7 +33,7 @@ Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards){
 */
 void playNextCard();
 
-/*
+/**
      *  Check if the game ended:
      *
      *  @return
@@ -35,7 +45,7 @@ bool isOver() const{
 }
 
 
-/*
+/**
  *  Get the status of the game:
  *
  *  @return
