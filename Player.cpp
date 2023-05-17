@@ -25,7 +25,6 @@ char* my_strcpy(char* dest, const char* src);
      */
     void Player::printInfo() const {
     printPlayerInfo(m_name, m_level, m_force, m_hp, m_coins);
-  ;
 }
 
 int my_strlen(const char* str)

@@ -28,8 +28,10 @@ m_player(playerName),  m_numOfCards(numOfCards), m_currentCard(FIRST_CARD), m_ga
      *      void
 */
 void Mtmchkin::playNextCard()
-{    
-     this->m_cardArray[m_currentCard].applyEncounter(m_player);
+{
+    Card currentCard = this->m_cardArray[m_currentCard];
+    currentCard.printInfo();
+    currentCard.applyEncounter(m_player);
      m_currentCard++;
      if (m_currentCard == m_numOfCards)
      {
@@ -42,7 +44,8 @@ void Mtmchkin::playNextCard()
      else if (m_player.getLevel() == 10)
      {
           m_gameStatus = GameStatus::Win;
-     }     
+     }
+     m_player.printInfo();
 }
 
 /**
