@@ -110,9 +110,9 @@ Player& Player::operator=(const Player& player) {
  * @result - The player is destroyed.
  *
 */
-    Player::~Player(){
+Player::~Player(){
     delete[] m_name;
-    }
+}
 
 
 /** Getters: **/
