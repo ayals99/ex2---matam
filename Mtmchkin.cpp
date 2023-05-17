@@ -22,6 +22,18 @@ m_player(playerName),  m_numOfCards(numOfCards), m_currentCard(FIRST_CARD), m_ga
 }
 
 /**
+     * D'tor of the game:
+     *
+     * @result
+     *    Frees all the fields of a game.
+*/
+
+Mtmchkin::~Mtmchkin(){
+    delete [] m_cardArray;
+}
+
+
+/**
      * Play the next Card - according to the instruction in the exercise document
      *
      * @return
