@@ -3,16 +3,16 @@ using std::cout;
 using std::endl;
 
 
-/* Const Defenitions*/
+/** Const Defines*/
 const char EMPTY_STRING = '\0';
 
 
-/* Function Signatures*/
+/** Function Signatures*/
 int my_strlen(const char* str);
 char* my_strcpy(char* dest, const char* src);
 
 
-/*
+/**
      * Prints the details of the player:
      *
      * @param name - The name of the player.
@@ -49,7 +49,7 @@ char* my_strcpy(char* dest, const char* src)
     return dest;
 }
 
-/*
+/**
  * C'tor of the player
  *
  * @param playerName - The name of the player.
@@ -65,7 +65,7 @@ m_level(1), m_force(force), m_hp(maxHP), m_maxHP(maxHP), m_coins(0)
     my_strcpy(m_name, name);
 }
 
-/*
+/**
  * Copy constructor for a player:
  *
  * @param player - The player to copy.
@@ -81,7 +81,7 @@ Player::Player(const Player& player){
     m_coins = player.m_coins;
 }
 
-/*
+/**
  * Assignment operator for a player:
  *
  * @param player - The player to assign.
@@ -103,13 +103,13 @@ Player& Player::operator=(const Player& player) {
     return *this;
 }
 
-/*
-     * Destructor for a player:
-     *
-     * @param player - The player to destroy.
-     * @result - The player is destroyed.
-     *
-    */
+/**
+ * Destructor for a player:
+ *
+ * @param player - The player to destroy.
+ * @result - The player is destroyed.
+ *
+*/
     Player::~Player(){
     delete[] m_name;
     }
@@ -129,38 +129,10 @@ bool Player::isKnockedOut() const{
 }
 
 /**
- * @return the player's HP.
- */
-int Player::getHp() const{
-    return this->m_hp;
-}
-
-/**
- * @return the player's coins.
- */
-int Player::getCoins() const{
-    return this->m_coins;
-}
-
-/**
  * @return the player's level.
  */
 int Player::getLevel() const{
     return this->m_level;
-}
-
-/**
- * @return the player's force.
- */
-int Player::getForce() const{
-    return this->m_force;
-}
-
-/**
- * @return the player's name.
- */
-const char* Player::getName() const{
-    return this->m_name;
 }
 
 /**
@@ -171,46 +143,6 @@ int Player::getAttackStrength() const{
 }
 
 /** Setters: **/
-
-// /**
-//  * @param name - The name to set.
-//  * @return void
-//  */
-// void setName(const char* name){
-
-// }
-
-// /**
-//  * @param hp - The HP to set.
-//  * @return void
-//  */
-// void setHp(int hp){
-
-// }
-
-// /**
-//  * @param coins - The coins to set.
-//  * @return void
-//  */
-// void setCoins(int coins){
-
-// }
-
-// /**
-//  * @param level - The level to set.
-//  * @return void
-//  */
-// void setLevel(int level){
-
-// }
-
-// /**
-//  * @param force - The force to set.
-//  * @return void
-//  */
-// void setForce(int force){
-
-// }
 
 /**
  * @param coinsToAdd - The amount of coins to add to the player.

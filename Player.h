@@ -17,7 +17,7 @@ class Player {
     int m_coins;
 
     public:
-    /*
+    /**
      * Prints the details of the player:
      *
      * @param name - The name of the player.
@@ -30,7 +30,7 @@ class Player {
      */
     void printInfo() const;
 
-    /* 
+    /**
      * Three constructors for a player:
      *
      * @param playerName - The name of the player.
@@ -39,9 +39,9 @@ class Player {
      * @result - The player's name, HP and coins are set to the given values.
      *      An instance of Mtmchkin
     */
-     Player(const char* name,  int maxHP = DEFAULT_MAX_HP, int force = DEFAULT_FORCE);
+     explicit Player(const char* name,  int maxHP = DEFAULT_MAX_HP, int force = DEFAULT_FORCE);
 
-    /*
+    /**
      * Copy constructor for a player :
      *
      * @param player - The player to copy.
@@ -49,7 +49,7 @@ class Player {
     */
     Player(const Player& player);
 
-    /*
+    /**
      * Destructor for a player:
      *
      * @param player - The player to destroy.
@@ -58,7 +58,7 @@ class Player {
     */
     ~Player();
 
-    /*
+    /**
      * Assignment operator for a player:
      *
      * @param player - The player to assign.
@@ -76,29 +76,9 @@ class Player {
     bool isKnockedOut() const;
 
     /**
-     * @return the player's HP.
-     */
-    int getHp() const;
-
-    /**
-     * @return the player's coins.
-     */
-    int getCoins() const;
-
-    /**
      * @return the player's level.
      */
     int getLevel() const;
-
-    /**
-     * @return the player's force.
-     */
-    int getForce() const;
-
-    /**
-     * @return the player's name.
-     */
-    const char* getName() const;
 
     /**
      * @return the player's attack strength.
@@ -107,37 +87,7 @@ class Player {
 
     /** Setters: **/
 
-    // /**
-    //  * @param name - The name to set.
-    //  * @return void
-    //  */
-    // void setName(const char* name);
-
-    // /**
-    //  * @param hp - The HP to set.
-    //  * @return void
-    //  */
-    // void setHp(int hp);
-
-    // /**
-    //  * @param coins - The coins to set.
-    //  * @return void
-    //  */
-    // void setCoins(int coins);
-
-    // /**
-    //  * @param level - The level to set.
-    //  * @return void
-    //  */
-    // void setLevel(int level);
-
-    // /**
-    //  * @param force - The force to set.
-    //  * @return void
-    //  */
-    // void setForce(int force);
-
-    /**
+     /**
      * @param coinscoinsToAdd - The amount of coins to add to the player.
      * @return void
      */

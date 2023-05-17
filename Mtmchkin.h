@@ -64,9 +64,6 @@ public:
      */
     GameStatus getGameStatus() const;
 
-    //TODO: complete the Mtmchkin class.
-    // This functions should start the game
-
 private:
     Player m_player;
     Card* m_cardArray;

@@ -3,43 +3,32 @@ using std::cout;
 using std::endl;
 
 
-/*Functions Signatures*/
+/**Functions Signatures*/
 bool handleBattleCard(Player& player, const CardStats& card);
 void handleBuffCard(Player& player, const CardStats& card);
 void handleHealCard(Player& player, const CardStats& card);
 void handleTreasureCard(Player& player, const CardStats& card);
-std::string effectToString(CardType m_effect);
-
-
-
-/**Const Defines*/
-
-
-const char* DIVIDER  = "------------------------";
-
-
-
 
 /**
-     * C'tor of Card class
-     *
-     * @param type - The type of the card.
-     * @param stats - The numeral stats of the card.
-     * @return
-     *      A new instance of Card.
-    */
+ * C'tor of Card class
+ *
+ * @param type - The type of the card.
+ * @param stats - The numeral stats of the card.
+ * @return
+ *      A new instance of Card.
+*/
 Card::Card(CardType type, const CardStats& stats){
      m_effect = type;
      m_stats = stats;
 }
 
 /**
-     * Handling the player's applyEncounter with the card:
-     *
-     * @param player - The player.
-     * @return
-     *      void
-    */
+ * Handling the player's applyEncounter with the card:
+ *
+ * @param player - The player.
+ * @return
+ *      void
+*/
 void Card::applyEncounter(Player& player) const{
      if (m_effect == CardType::Battle){
           printBattleResult(handleBattleCard(player, m_stats));
@@ -55,6 +44,10 @@ void Card::applyEncounter(Player& player) const{
      }
 }
 
+/**
+ * Handling the player's applyEncounter with the card.
+ * @return true if the player won the encounter or false if lost.
+*/
 bool handleBattleCard(Player& player, const CardStats& card){
      int playerForce = player.getAttackStrength();
      int monsterForce = card.force;
@@ -74,7 +67,9 @@ bool handleBattleCard(Player& player, const CardStats& card){
      }
 }
 
-
+/**
+ * Handling the player's applyEncounter with the card.
+*/
 void handleBuffCard(Player& player, const CardStats& card){
      if (player.pay(card.cost))
      {
@@ -82,7 +77,9 @@ void handleBuffCard(Player& player, const CardStats& card){
      }
 }
 
-
+/**
+ * Handling the player's applyEncounter with the card.
+*/
 void handleHealCard(Player& player, const CardStats& card){
      if (player.pay(card.cost))
      {
@@ -90,6 +87,9 @@ void handleHealCard(Player& player, const CardStats& card){
      }
 }
 
+/**
+ * Handling the player's applyEncounter with the card.
+*/
 void handleTreasureCard(Player& player, const CardStats& card){
      player.addCoins(card.loot);
 }
@@ -114,24 +114,3 @@ void Card::printInfo() const{
         printTreasureCardInfo(m_stats);
     }
 }
-
-
-std::string effectToString(CardType m_effect)
-    {
-        if (m_effect == CardType::Battle)
-        {
-            return "Battle";
-        }
-        else if (m_effect == CardType::Treasure)
-        {
-            return "Treasure";
-        }
-        else if (m_effect == CardType::Buff)
-        {
-            return "Buff";
-        }
-        else
-        {
-            return "Heal";
-        }
-    }
