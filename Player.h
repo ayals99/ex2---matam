@@ -1,11 +1,16 @@
 #ifndef EX2_MATAM_PLAYER_H
 #define EX2_MATAM_PLAYER_H
 
+const int DEFAULT_MAX_HP = 100;
+const int DEFAULT_FORCE = 5;
+
+
 class Player {
-    char* m_name;
+    std::string m_name;
     int m_level;
     int m_force;
     int m_hp;
+    int m_maxHP;
     int m_coins;
 
     public:
@@ -20,9 +25,9 @@ class Player {
      *
      * @return void
      */
-    static void printInfo() const;
+    void printInfo() const;
 
-    /*
+    /* 
      * Three constructors for a player:
      *
      * @param playerName - The name of the player.
@@ -31,17 +36,15 @@ class Player {
      * @result - The player's name, HP and coins are set to the given values.
      *      An instance of Mtmchkin
     */
-    static Player(const char* name, int maxHP, int coins);
-    static Player(const char* name, int maxHP);
-    static Player(const char* name);
+     Player(const std::string& name, int force = DEFAULT_FORCE, int maxHP = DEFAULT_MAX_HP);
 
     /*
-     * Copy constructor for a player:
+     * Copy constructor for a player :
      *
      * @param player - The player to copy.
      * @result - An instance of Player with the same values as the given player.
     */
-    static Player(const Player& player);
+    Player(const Player& player);
 
     /*
      * Destructor for a player:
@@ -101,35 +104,35 @@ class Player {
 
     /** Setters: **/
 
-    /**
-     * @param name - The name to set.
-     * @return void
-     */
-    void setName(const char* name);
+    // /**
+    //  * @param name - The name to set.
+    //  * @return void
+    //  */
+    // void setName(const char* name);
 
-    /**
-     * @param hp - The HP to set.
-     * @return void
-     */
-    void setHp(int hp);
+    // /**
+    //  * @param hp - The HP to set.
+    //  * @return void
+    //  */
+    // void setHp(int hp);
 
-    /**
-     * @param coins - The coins to set.
-     * @return void
-     */
-    void setCoins(int coins);
+    // /**
+    //  * @param coins - The coins to set.
+    //  * @return void
+    //  */
+    // void setCoins(int coins);
 
-    /**
-     * @param level - The level to set.
-     * @return void
-     */
-    void setLevel(int level);
+    // /**
+    //  * @param level - The level to set.
+    //  * @return void
+    //  */
+    // void setLevel(int level);
 
-    /**
-     * @param force - The force to set.
-     * @return void
-     */
-    void setForce(int force);
+    // /**
+    //  * @param force - The force to set.
+    //  * @return void
+    //  */
+    // void setForce(int force);
 
     /**
      * @param coinscoinsToAdd - The amount of coins to add to the player.
@@ -144,16 +147,12 @@ class Player {
     void heal(int hpToAdd);
 
     /**
+     * Reduces the player's HP by the given amount. If the damage is 0 or less, does nothing.
+     * Only reduces the player's HP to 0, not below.
      * @param hpToReduce - The amount of HP to reduce from the player.
      * @return void
      */
     void damage(int hpToReduce);
-
-    /**
-     * @param none
-     * @return void
-     */
-    void levelUp();
 
     /**
      * @param forceToAdd - The amount of force to add to the player.
@@ -166,6 +165,13 @@ class Player {
      * @return true if the player has enough coins to pay. false otherwise.
      */
     bool pay(int coinsToPay);
+
+    /**
+     * Increases the players level by 1. If the player's level is 10, does nothing.
+     * @param none
+     * @return void
+     */
+    void levelUp();
 };
 
 #endif //EX2_MATAM_PLAYER_H

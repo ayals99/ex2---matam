@@ -1,9 +1,10 @@
 #ifndef EX2_GAME_H
 #define EX2_GAME_H
 #include "Card.h"
+#include "Player.h"
 #include <iostream>
 #include <string>
-#include "Player.h"
+
 
 /**
  * GameStatus:
@@ -58,18 +59,12 @@ public:
     //TODO: complete the Mtmchkin class.
     // This functions should start the game
 
-    /**Initializes the game with the given parameters:
-     * @param name - the name of the player
-     * @param cardArray - the array of cards
-     * @param power - the power of the player
-     * @return
-     *      A new instance of Mtmchkin
-     */
-    Mtmchkin game(std::string name, Card& cardArray, int power);
-
 private:
-    //TODO: complete the Mtmchkin class.
-
+    Player m_player;
+    Card* m_cardArray;
+    int m_numOfCards;
+    int m_currentCard;
+    GameStatus m_gameStatus;
 };
 
 

@@ -1,5 +1,20 @@
 #include "Player.h"
+#include <string>
 #include <iostream>
+using std::cout;
+using std::endl;
+
+
+/* Const Defenitions*/
+const char EMPTY_STRING = '\0';
+const char* LINE_DIVIDER  = "------------------------";
+
+
+/* Function Signatures*/
+int my_strlen(const char* str);
+char* my_strcpy(char* dest, const char* src);
+
+
 /*
      * Prints the details of the player:
      *
@@ -11,17 +26,40 @@
      *
      * @return void
      */
-void printInfo() const{
-    std::cout << "Player Details:";
-    std::cout << "Name: " << m_name << std::endl;
-    std::cout << "Level: " << m_level << std::endl;
-    std::cout << "Force: " << m_force << std::endl;
-    std::cout << "HP: " << m_hp << std::endl;
-    std::cout << "Coins: " << m_coins << std::endl;
+    void Player::printInfo() const {
+    cout << "Player Details:";
+    cout << "Name: " << m_name << endl;
+    cout << "Level: " << m_level << endl;
+    cout << "Force: " << m_force << endl;
+    cout << "HP: " << m_hp << endl;
+    cout << "Coins: " << m_coins << endl;
+    cout << LINE_DIVIDER << endl;
+}
+
+int my_strlen(const char* str)
+{
+    int i = 0;
+    while (str[i] != EMPTY_STRING)
+    {
+        i++;
+    }
+    return i;
+}
+
+char* my_strcpy(char* dest, const char* src)
+{
+    int i = 0;
+    while (src[i] != EMPTY_STRING)
+    {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = EMPTY_STRING;
+    return dest;
 }
 
 /*
- * Three constructors for a player:
+ * C'tor of the player
  *
  * @param playerName - The name of the player.
  * @param maxHP - The initial maximum HP.
@@ -29,17 +67,10 @@ void printInfo() const{
  * @result - The player's name, HP and coins are set to the given values.
  *      An instance of Mtmchkin
 */
-
-/* First Constructor */
-Player(const char* name, int maxHP, int coins){
-}
-
-/* Second Constructor */
-Player(const char* name, int maxHP){
-}
-
-/*Third Constructor */
-Player(const char* name){
+Player::Player(const std::string& name, int force, int maxHP):
+m_level(1), m_force(force), m_hp(maxHP), m_maxHP(maxHP), m_coins(0)
+{
+    m_name = name;
 }
 
 /*
@@ -48,8 +79,13 @@ Player(const char* name){
  * @param player - The player to copy.
  * @result - An instance of Player with the same values as the given player.
 */
-Player(const Player& player){
-
+Player::Player(const Player& player){
+    m_name = player.m_name;
+    m_level = player.m_level;
+    m_force = player.m_force;
+    m_hp = player.m_hp;
+    m_maxHP = player.m_maxHP;
+    m_coins = player.m_coins;
 }
 
 /*
@@ -59,8 +95,8 @@ Player(const Player& player){
  * @result - The player is destroyed.
  *
 */
-~Player(){
-
+Player::~Player(){
+    delete[] m_name;
 }
 
 /*
@@ -70,148 +106,184 @@ Player(const Player& player){
  * @result - The player is assigned.
  *
 */
-Player& operator=(const Player& player){
-
+Player& Player::operator=(const Player& player) {
+    if (this == &player){
+        return *this;
+    }
+    delete[] m_name;
+    m_name = new char[my_strlen(player.m_name) + 1];
+    my_strcpy(m_name, player.m_name);
+    m_level = player.m_level;
+    m_force = player.m_force;
+    m_hp = player.m_hp;
+    m_maxHP = player.m_maxHP;
+    m_coins = player.m_coins;
+    return *this;
 }
-
 
 /** Getters: **/
 
 /**
  * @return true if the player is knocked out, false otherwise.
  */
-bool isKnockedOut() const{
-
+bool Player::isKnockedOut() const{
+    if (this->m_hp <= 0)
+    {
+        return true;
+    }
+    return false;
 }
 
 /**
  * @return the player's HP.
  */
-int getHp() const{
-
+int Player::getHp() const{
+    return this->m_hp;
 }
 
 /**
  * @return the player's coins.
  */
-int getCoins() const{
-
+int Player::getCoins() const{
+    return this->m_coins;
 }
 
 /**
  * @return the player's level.
  */
-int getLevel() const{
-
+int Player::getLevel() const{
+    return this->m_level;
 }
 
 /**
  * @return the player's force.
  */
-int getForce() const{
-
+int Player::getForce() const{
+    return this->m_force;
 }
 
 /**
  * @return the player's name.
  */
-const char* getName() const{
-
+const char* Player::getName() const{
+    return this->m_name;
 }
 
 /**
  * @return the player's attack strength.
  */
-int getAttackStrength() const{
-
+int Player::getAttackStrength() const{
+    return this->m_force + this->m_level;
 }
 
 /** Setters: **/
 
-/**
- * @param name - The name to set.
- * @return void
- */
-void setName(const char* name){
+// /**
+//  * @param name - The name to set.
+//  * @return void
+//  */
+// void setName(const char* name){
 
-}
+// }
 
-/**
- * @param hp - The HP to set.
- * @return void
- */
-void setHp(int hp){
+// /**
+//  * @param hp - The HP to set.
+//  * @return void
+//  */
+// void setHp(int hp){
 
-}
+// }
 
-/**
- * @param coins - The coins to set.
- * @return void
- */
-void setCoins(int coins){
+// /**
+//  * @param coins - The coins to set.
+//  * @return void
+//  */
+// void setCoins(int coins){
 
-}
+// }
 
-/**
- * @param level - The level to set.
- * @return void
- */
-void setLevel(int level){
+// /**
+//  * @param level - The level to set.
+//  * @return void
+//  */
+// void setLevel(int level){
 
-}
+// }
 
-/**
- * @param force - The force to set.
- * @return void
- */
-void setForce(int force){
+// /**
+//  * @param force - The force to set.
+//  * @return void
+//  */
+// void setForce(int force){
 
-}
+// }
 
 /**
  * @param coinsToAdd - The amount of coins to add to the player.
  * @return void
  */
-void addCoins(int coinsToAdd){
-
+void Player::addCoins(int coinsToAdd){
+    this->m_coins += coinsToAdd;
 }
 
 /**
  * @param hpToAdd - The amount of HP to add to the player.
  * @return void
  */
-void heal(int hpToAdd){
-
+void Player::heal(int hpToAdd){
+    this->m_hp += hpToAdd;
+    if (this->m_hp > this->m_maxHP)
+    {
+        this->m_hp = this->m_maxHP;
+    }
 }
 
 /**
+ * Reduces the player's HP by the given amount. If the damage is 0 or less, does nothing.
+ * Only reduces the player's HP to 0, not below.
  * @param hpToReduce - The amount of HP to reduce from the player.
  * @return void
  */
-void damage(int hpToReduce){
-
+void Player::damage(int hpToReduce){
+    if (hpToReduce > 0)
+    {
+        this->m_hp -= hpToReduce;
+        if (this->m_hp < 0)
+        {
+            this->m_hp = 0;
+        }
+    }
 }
 
 /**
- * @param levelToAdd - The amount of levels to add to the player.
+ * Increases the players level by 1. If the player's level is 10, does nothing.
+ * @param none
  * @return void
  */
-void levelUp(int levelToAdd){
-
+void Player::levelUp(){
+    if (this->m_level < 10)
+    {
+        this->m_level++;
+    }
 }
 
 /**
  * @param forceToAdd - The amount of force to add to the player.
  * @return void
  */
-void buff(int forceToAdd){
-
+void Player::buff(int forceToAdd){
+    this->m_force += forceToAdd;
 }
 
 /**
  * @param coinsToPay - The amount of coins to pay.
  * @return void
  */
-void pay(int coinsToPay){
-
+bool Player::pay(int coinsToPay){
+    if (this->m_coins >= coinsToPay)
+    {
+        this->m_coins -= coinsToPay;
+        return true;
+    }
+    return false;
 }

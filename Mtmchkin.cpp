@@ -1,5 +1,7 @@
 #include "Mtmchkin.h"
 
+const int FIRST_CARD = 0;
+
 /**
      * C'tor of the game:
      *
@@ -9,21 +11,15 @@
      * @result
      *      An instance of Mtmchkin
 */
-Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards){
-
+Mtmchkin::Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards):
+m_player(playerName),  m_numOfCards(numOfCards), m_currentCard(FIRST_CARD), m_gameStatus(GameStatus::MidGame)
+{
+     m_cardArray = new Card[numOfCards];
+     for(int i = 0; i < numOfCards; i++)
+     {
+          m_cardArray[i] = cardsArray[i];
+     }
 }
-
-/**Initializes the game with the given parameters:
-     * @param name - the name of the player
-     * @param cardArray - the array of cards
-     * @param power - the power of the player
-     * @return
-     *      A new instance of Mtmchkin
-     */
-Mtmchkin game(std::string name, Card& cardArray, int power){
-
-}
-
 
 /**
      * Play the next Card - according to the instruction in the exercise document
@@ -31,7 +27,23 @@ Mtmchkin game(std::string name, Card& cardArray, int power){
      * @return
      *      void
 */
-void playNextCard();
+void Mtmchkin::playNextCard()
+{    
+     this->m_cardArray[m_currentCard].applyEncounter(m_player);
+     m_currentCard++;
+     if (m_currentCard == m_numOfCards)
+     {
+          m_currentCard = FIRST_CARD;
+     }
+     if (m_player.isKnockedOut())
+     {
+          m_gameStatus = GameStatus::Loss;
+     }
+     else if (m_player.getLevel() == 10)
+     {
+          m_gameStatus = GameStatus::Win;
+     }     
+}
 
 /**
      *  Check if the game ended:
@@ -40,8 +52,16 @@ void playNextCard();
      *          True if the game ended
      *          False otherwise
      */
-bool isOver() const{
-
+bool Mtmchkin::isOver() const
+{
+  if (this->getGameStatus() != GameStatus::MidGame)
+  {
+       return true;
+  }
+  else
+  {
+       return false;
+  }
 }
 
 
@@ -51,7 +71,8 @@ bool isOver() const{
  *  @return
  *          GameStatus - the current status of the running game
  */
-GameStatus getGameStatus() const{
-
+GameStatus Mtmchkin::getGameStatus() const
+{
+     return m_gameStatus;
 }
 
