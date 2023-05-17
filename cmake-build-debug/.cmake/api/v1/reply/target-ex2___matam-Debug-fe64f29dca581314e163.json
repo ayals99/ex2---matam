@@ -51,21 +51,21 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -fdiagnostics-color=always"
+					"fragment" : "-g"
 				},
 				{
-					"fragment" : "-std=gnu++14"
+					"fragment" : "-std=gnu++11"
 				}
 			],
 			"includes" : 
 			[
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/ayals/OneDrive/Documents/GitHub/ex2---matam/."
+					"path" : "C:/Users/user/Documents/GitHub/ex2---matam/."
 				},
 				{
 					"backtrace" : 3,
-					"path" : "C:/Users/ayals/OneDrive/Documents/GitHub/ex2---matam/ex2---matam"
+					"path" : "C:/Users/user/Documents/GitHub/ex2---matam/ex2---matam"
 				}
 			],
 			"language" : "CXX",
@@ -75,7 +75,7 @@
 				[
 					1
 				],
-				"standard" : "14"
+				"standard" : "11"
 			},
 			"sourceIndexes" : 
 			[

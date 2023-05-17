@@ -2,6 +2,7 @@
 #define EX2_GAME_H
 #include "Card.h"
 #include "Player.h"
+#include "utilities.h"
 #include <iostream>
 #include <string>
 

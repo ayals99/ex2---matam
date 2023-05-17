@@ -3,10 +3,11 @@
 //
 #ifndef EX2_Card_H
 #define EX2_Card_H
-
+#include <iostream>
 #include <string>
 #include "Player.h"
 #include "utilities.h"
+
 
 /*
  *  CardType:

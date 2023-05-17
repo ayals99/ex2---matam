@@ -1,12 +1,15 @@
 #ifndef EX2_MATAM_PLAYER_H
 #define EX2_MATAM_PLAYER_H
+#include "utilities.h"
+#include <string>
+#include <iostream>
 
 const int DEFAULT_MAX_HP = 100;
 const int DEFAULT_FORCE = 5;
 
 
 class Player {
-    std::string m_name;
+    char* m_name;
     int m_level;
     int m_force;
     int m_hp;
@@ -36,7 +39,7 @@ class Player {
      * @result - The player's name, HP and coins are set to the given values.
      *      An instance of Mtmchkin
     */
-     Player(const std::string& name, int force = DEFAULT_FORCE, int maxHP = DEFAULT_MAX_HP);
+     Player(const char* name, int force = DEFAULT_FORCE, int maxHP = DEFAULT_MAX_HP);
 
     /*
      * Copy constructor for a player :

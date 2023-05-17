@@ -1,5 +1,4 @@
 #include "Card.h"
-#include <iostream>
 using std::cout;
 using std::endl;
 
@@ -13,8 +12,8 @@ void handleTreasureCardplayer(Player& player, const CardStats& card);
 
 /*Const Defines*/
 
-const char* LINE_DIVIDER  = "------------------------";
 
+const char* DIVIDER  = "------------------------";
 
 
 
@@ -115,5 +114,5 @@ void Card::printInfo() const{
      cout << "Force: " << this->m_stats.force << endl;
      cout << "Profit (on win): " << this->m_stats.loot << endl;
      cout << "Dameg taken (on loss): " << this->m_stats.hpLossOnDefeat << endl;
-     cout << LINE_DIVIDER << endl;
+     cout << DIVIDER << endl;
 }

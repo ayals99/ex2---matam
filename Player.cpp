@@ -1,13 +1,10 @@
 #include "Player.h"
-#include <string>
-#include <iostream>
 using std::cout;
 using std::endl;
 
 
 /* Const Defenitions*/
 const char EMPTY_STRING = '\0';
-const char* LINE_DIVIDER  = "------------------------";
 
 
 /* Function Signatures*/
@@ -27,13 +24,8 @@ char* my_strcpy(char* dest, const char* src);
      * @return void
      */
     void Player::printInfo() const {
-    cout << "Player Details:";
-    cout << "Name: " << m_name << endl;
-    cout << "Level: " << m_level << endl;
-    cout << "Force: " << m_force << endl;
-    cout << "HP: " << m_hp << endl;
-    cout << "Coins: " << m_coins << endl;
-    cout << LINE_DIVIDER << endl;
+    printPlayerInfo(m_name, m_level, m_force, m_hp, m_coins);
+  ;
 }
 
 int my_strlen(const char* str)
@@ -67,10 +59,11 @@ char* my_strcpy(char* dest, const char* src)
  * @result - The player's name, HP and coins are set to the given values.
  *      An instance of Mtmchkin
 */
-Player::Player(const std::string& name, int force, int maxHP):
+Player::Player(const char* name, int force, int maxHP):
 m_level(1), m_force(force), m_hp(maxHP), m_maxHP(maxHP), m_coins(0)
 {
-    m_name = name;
+    m_name = new char[my_strlen(name) + 1];
+    my_strcpy(m_name, name);
 }
 
 /*
@@ -80,23 +73,13 @@ m_level(1), m_force(force), m_hp(maxHP), m_maxHP(maxHP), m_coins(0)
  * @result - An instance of Player with the same values as the given player.
 */
 Player::Player(const Player& player){
-    m_name = player.m_name;
+    m_name = new char[my_strlen(player.m_name) + 1];
+    my_strcpy(m_name, player.m_name);
     m_level = player.m_level;
     m_force = player.m_force;
     m_hp = player.m_hp;
     m_maxHP = player.m_maxHP;
     m_coins = player.m_coins;
-}
-
-/*
- * Destructor for a player:
- *
- * @param player - The player to destroy.
- * @result - The player is destroyed.
- *
-*/
-Player::~Player(){
-    delete[] m_name;
 }
 
 /*
@@ -120,6 +103,18 @@ Player& Player::operator=(const Player& player) {
     m_coins = player.m_coins;
     return *this;
 }
+
+/*
+     * Destructor for a player:
+     *
+     * @param player - The player to destroy.
+     * @result - The player is destroyed.
+     *
+    */
+    Player::~Player(){
+    delete[] m_name;
+    }
+
 
 /** Getters: **/
 
