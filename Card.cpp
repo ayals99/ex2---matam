@@ -6,8 +6,10 @@ using std::endl;
 /*Functions Signatures*/
 bool handleBattleCard(Player& player, const CardStats& card);
 void handleBuffCard(Player& player, const CardStats& card);
-void handleHealCardplayer(Player& player, const CardStats& card);
-void handleTreasureCardplayer(Player& player, const CardStats& card);
+void handleHealCard(Player& player, const CardStats& card);
+void handleTreasureCard(Player& player, const CardStats& card);
+std::string effectToString(CardType m_effect);
+
 
 
 /*Const Defines*/
@@ -46,10 +48,10 @@ void Card::applyEncounter(Player& player) const{
           handleBuffCard(player, m_stats);
      }
      else if (m_effect == CardType::Heal){
-          handleHealCardplayer(player, m_stats);
+         handleHealCard(player, m_stats);
      }
      else{
-          handleTreasureCardplayer(player, m_stats);
+         handleTreasureCard(player, m_stats);
      }
      player.printInfo();
 }
@@ -85,7 +87,7 @@ void handleBuffCard(Player& player, const CardStats& card){
 }
 
 
-void handleHealCardplayer(Player& player, const CardStats& card){
+void handleHealCard(Player& player, const CardStats& card){
      printHealCardInfo(card);
      if (player.pay(card.cost))
      {
@@ -93,7 +95,7 @@ void handleHealCardplayer(Player& player, const CardStats& card){
      }
 }
 
-void handleTreasureCardplayer(Player& player, const CardStats& card){
+void handleTreasureCard(Player& player, const CardStats& card){
      printTreasureCardInfo(card);
      player.addCoins(card.loot);
 }
@@ -109,10 +111,32 @@ void handleTreasureCardplayer(Player& player, const CardStats& card){
      *      void
 */
 void Card::printInfo() const{
+     std::string effectToPrint = effectToString(m_effect);
      cout << "Card drawn: " << endl;
-     cout << "Type: " << std::to_string((int)m_effect) << endl;
+     cout << "Type: " << effectToPrint << endl;
      cout << "Force: " << this->m_stats.force << endl;
      cout << "Profit (on win): " << this->m_stats.loot << endl;
-     cout << "Dameg taken (on loss): " << this->m_stats.hpLossOnDefeat << endl;
+     cout << "Damage taken (on loss): " << this->m_stats.hpLossOnDefeat << endl;
      cout << DIVIDER << endl;
 }
+
+
+std::string effectToString(CardType m_effect)
+    {
+        if (m_effect == CardType::Battle)
+        {
+            return "Battle";
+        }
+        else if (m_effect == CardType::Treasure)
+        {
+            return "Treasure";
+        }
+        else if (m_effect == CardType::Buff)
+        {
+            return "Buff";
+        }
+        else
+        {
+            return "Heal";
+        }
+    }
