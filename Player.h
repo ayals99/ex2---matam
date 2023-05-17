@@ -39,7 +39,7 @@ class Player {
      * @result - The player's name, HP and coins are set to the given values.
      *      An instance of Mtmchkin
     */
-     Player(const char* name, int force = DEFAULT_FORCE, int maxHP = DEFAULT_MAX_HP);
+     Player(const char* name,  int maxHP = DEFAULT_MAX_HP, int force = DEFAULT_FORCE);
 
     /*
      * Copy constructor for a player :

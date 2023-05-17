@@ -59,7 +59,7 @@ char* my_strcpy(char* dest, const char* src)
  * @result - The player's name, HP and coins are set to the given values.
  *      An instance of Mtmchkin
 */
-Player::Player(const char* name, int force, int maxHP):
+Player::Player(const char* name, int maxHP, int force):
 m_level(1), m_force(force), m_hp(maxHP), m_maxHP(maxHP), m_coins(0)
 {
     m_name = new char[my_strlen(name) + 1];
