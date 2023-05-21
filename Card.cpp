@@ -51,14 +51,13 @@ void Card::applyEncounter(Player& player) const{
 bool handleBattleCard(Player& player, const CardStats& card){
      int playerForce = player.getAttackStrength();
      int monsterForce = card.force;
-     int monsterLoot = card.loot;
-     int potentialHPloss = card.hpLossOnDefeat;
-
+     int monsterLoot = (card.loot > 0) ? card.loot : 0;
+     int potentialHPloss = (card.hpLossOnDefeat > 0) ? card.hpLossOnDefeat : 0;
      if(playerForce >= monsterForce)
      {
-          player.addCoins(monsterLoot);
-          player.levelUp();
-          return true;
+         player.addCoins(monsterLoot);
+         player.levelUp();
+         return true;
      }
      else
      {
@@ -71,10 +70,7 @@ bool handleBattleCard(Player& player, const CardStats& card){
  * Handling the player's applyEncounter with the card.
 */
 void handleBuffCard(Player& player, const CardStats& card){
-    if(card.cost < 0){
-        return;
-    }
-    if (player.pay(card.cost))
+    if (card.cost < 0 || player.pay(card.cost))
      {
          if(card.buff > 0){
              player.buff(card.buff);
@@ -86,10 +82,7 @@ void handleBuffCard(Player& player, const CardStats& card){
  * Handling the player's applyEncounter with the card.
 */
 void handleHealCard(Player& player, const CardStats& card){
-    if(card.cost < 0){
-        return;
-    }
-    if (player.pay(card.cost))
+    if (card.cost < 0 || player.pay(card.cost))
      {
          if(card.heal > 0){
              player.heal(card.heal);

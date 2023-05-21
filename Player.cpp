@@ -168,7 +168,9 @@ int Player::getAttackStrength() const{
  * @return void
  */
 void Player::addCoins(int coinsToAdd){
-    this->m_coins += coinsToAdd;
+    if(coinsToAdd > 0) {
+        this->m_coins += coinsToAdd;
+    }
 }
 
 /**
@@ -176,7 +178,9 @@ void Player::addCoins(int coinsToAdd){
  * @return void
  */
 void Player::heal(int hpToAdd){
-    this->m_hp += hpToAdd;
+    if(hpToAdd > 0) {
+        this->m_hp += hpToAdd;
+    }
     if (this->m_hp > this->m_maxHP)
     {
         this->m_hp = this->m_maxHP;
@@ -192,7 +196,9 @@ void Player::heal(int hpToAdd){
 void Player::damage(int hpToReduce){
     if (hpToReduce > MIN_HP)
     {
-        this->m_hp -= hpToReduce;
+        if(hpToReduce > 0) {
+            this->m_hp -= hpToReduce;
+        }
         if (this->m_hp < MIN_HP)
         {
             this->m_hp = MIN_HP;
@@ -217,7 +223,9 @@ void Player::levelUp(){
  * @return void
  */
 void Player::buff(int forceToAdd){
-    this->m_force += forceToAdd;
+    if(forceToAdd > 0) {
+        this->m_force += forceToAdd;
+    }
 }
 
 /**
