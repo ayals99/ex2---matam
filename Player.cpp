@@ -5,36 +5,39 @@ using std::endl;
 
 /** Const Defines*/
 const char EMPTY_STRING = '\0';
-
+const int MIN_HP = 0;
+const int INITIAL_COINS = 0;
+const int INITIAL_LEVEL = 1;
 
 /** Function Signatures*/
 int my_strlen(const char* str);
 char* my_strcpy(char* dest, const char* src);
-
+bool forceIsNegative(int force);
+bool maxHPisPositive(int maxHP);
 
 /**
-     * Prints the details of the player:
-     *
-     * @param name - The name of the player.
-     * @param level - The player's level.
-     * @param force - The player's force.
-     * @param hp - The player's HP points.
-     * @param coins - The player's amount of coins.
-     *
-     * @return void
-     */
-    void Player::printInfo() const {
+* Prints the details of the player:
+*
+* @param name - The name of the player.
+* @param level - The player's level.
+* @param force - The player's force.
+* @param hp - The player's HP points.
+* @param coins - The player's amount of coins.
+*
+* @return void
+*/
+void Player::printInfo() const {
     printPlayerInfo(m_name, m_level, m_force, m_hp, m_coins);
 }
 
 int my_strlen(const char* str)
 {
-    int i = 0;
-    while (str[i] != EMPTY_STRING)
+    int counter = 0;
+    while (str[counter] != EMPTY_STRING)
     {
-        i++;
+        counter++;
     }
-    return i;
+    return counter;
 }
 
 char* my_strcpy(char* dest, const char* src)
@@ -49,18 +52,35 @@ char* my_strcpy(char* dest, const char* src)
     return dest;
 }
 
+bool forceIsNegative(int force){
+    return (force < 0);
+}
+
+bool maxHPisPositive(int maxHP){
+    return (maxHP > 0);
+}
+
 /**
  * C'tor of the player
  *
- * @param playerName - The name of the player.
+ * @param playerName - The name of the player. Can be assumed to be valid.
  * @param maxHP - The initial maximum HP.
+ *                If not given, the default value is used.
+ *                If the given value is negative or zero, the default value is used.
  * @param coins - The initial amount of coins.
- * @result - The player's name, HP and coins are set to the given values.
- *      An instance of Mtmchkin
+ *                If not given, the default value is used.
+ *                If the given value is negative, the default value is used.
+ * @result - An instanceof Player. The player's name, HP and coins are set to the given values.
 */
 Player::Player(const char* name, int maxHP, int force):
-m_level(1), m_force(force), m_hp(maxHP), m_maxHP(maxHP), m_coins(0)
-{
+m_level(INITIAL_LEVEL), m_force(force), m_hp(maxHP), m_maxHP(maxHP), m_coins(INITIAL_COINS){
+    if( !maxHPisPositive(maxHP) ){
+        m_maxHP = DEFAULT_MAX_HP;
+        m_hp = m_maxHP;
+    }
+    if(forceIsNegative(force)){
+        m_force = DEFAULT_FORCE;
+    }
     m_name = new char[my_strlen(name) + 1];
     my_strcpy(m_name, name);
 }
@@ -114,14 +134,13 @@ Player::~Player(){
     delete[] m_name;
 }
 
-
 /** Getters: **/
 
 /**
  * @return true if the player is knocked out, false otherwise.
  */
 bool Player::isKnockedOut() const{
-    if (this->m_hp <= 0)
+    if (this->m_hp <= MIN_HP)
     {
         return true;
     }
@@ -171,23 +190,23 @@ void Player::heal(int hpToAdd){
  * @return void
  */
 void Player::damage(int hpToReduce){
-    if (hpToReduce > 0)
+    if (hpToReduce > MIN_HP)
     {
         this->m_hp -= hpToReduce;
-        if (this->m_hp < 0)
+        if (this->m_hp < MIN_HP)
         {
-            this->m_hp = 0;
+            this->m_hp = MIN_HP;
         }
     }
 }
 
 /**
- * Increases the players level by 1. If the player's level is 10, does nothing.
+ * Increases the players level by 1. If the player's level is MAX_LEVEL (10), does nothing.
  * @param none
  * @return void
  */
 void Player::levelUp(){
-    if (this->m_level < 10)
+    if (this->m_level < MAX_LEVEL)
     {
         this->m_level++;
     }

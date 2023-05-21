@@ -6,6 +6,7 @@
 
 const int DEFAULT_MAX_HP = 100;
 const int DEFAULT_FORCE = 5;
+const int MAX_LEVEL = 10;
 
 
 class Player {
@@ -31,13 +32,16 @@ class Player {
     void printInfo() const;
 
     /**
-     * Three constructors for a player:
+     * Constructor of the player:
      *
-     * @param playerName - The name of the player.
+     * @param playerName - The name of the player. Can be assumed to be valid.
      * @param maxHP - The initial maximum HP.
+     *                If not given, the default value is used.
+     *                If the given value is negative or zero, the default value is used.
      * @param coins - The initial amount of coins.
-     * @result - The player's name, HP and coins are set to the given values.
-     *      An instance of Mtmchkin
+     *                If not given, the default value is used.
+     *                If the given value is negative, the default value is used.
+     * @result - An instanceof Player. The player's name, HP and coins are set to the given or defaault values.
     */
      explicit Player(const char* name,  int maxHP = DEFAULT_MAX_HP, int force = DEFAULT_FORCE);
 

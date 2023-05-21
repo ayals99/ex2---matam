@@ -53,7 +53,7 @@ void Mtmchkin::playNextCard()
      {
           m_gameStatus = GameStatus::Loss;
      }
-     else if (m_player.getLevel() == 10)
+     else if (m_player.getLevel() == MAX_LEVEL) // MAX_LEVEL = 10 declared in Player.h
      {
           m_gameStatus = GameStatus::Win;
      }

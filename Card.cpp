@@ -71,9 +71,14 @@ bool handleBattleCard(Player& player, const CardStats& card){
  * Handling the player's applyEncounter with the card.
 */
 void handleBuffCard(Player& player, const CardStats& card){
-     if (player.pay(card.cost))
+    if(card.cost < 0){
+        return;
+    }
+    if (player.pay(card.cost))
      {
-          player.buff(card.buff);
+         if(card.buff > 0){
+             player.buff(card.buff);
+         }
      }
 }
 
@@ -81,9 +86,14 @@ void handleBuffCard(Player& player, const CardStats& card){
  * Handling the player's applyEncounter with the card.
 */
 void handleHealCard(Player& player, const CardStats& card){
-     if (player.pay(card.cost))
+    if(card.cost < 0){
+        return;
+    }
+    if (player.pay(card.cost))
      {
-          player.heal(card.heal);
+         if(card.heal > 0){
+             player.heal(card.heal);
+         }
      }
 }
 
@@ -91,7 +101,9 @@ void handleHealCard(Player& player, const CardStats& card){
  * Handling the player's applyEncounter with the card.
 */
 void handleTreasureCard(Player& player, const CardStats& card){
-     player.addCoins(card.loot);
+    if(card.loot > 0) {
+        player.addCoins(card.loot);
+    }
 }
 
 /**
